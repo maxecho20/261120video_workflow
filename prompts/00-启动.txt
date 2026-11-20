@@ -1,0 +1,1 @@
+先读 README.md 和 skills/ai-video-workflow/SKILL.md，使用这个工程里的 7 个视频 Skill。先运行 python3 scripts/env_check.py --task basic，告诉我当前环境缺什么，只安装这次任务需要的依赖。环境就绪后运行 npm ci，再运行 python3 scripts/repro_demo.py talk，检查六秒测试片能解码、有音轨。这个测试片只验证环境。然后根据我接下来提供的任务，检查对应依赖，读取 input/material/ 中的素材，在 runs/ 下新建任务目录，先做一段带声音的预览。原素材不要覆盖，不要上传到代码仓库。

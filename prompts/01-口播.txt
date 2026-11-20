@@ -1,0 +1,1 @@
+用 ai-video-workflow 调用 media-understanding、speech-transcription、talking-head-edit 和 video-review，帮我剪一条真人口播。我的原声视频、讲稿和 B-roll 放在 input/material/，辅助视频放在 input/material/broll/。给【谁】看，讲清【一件事】，时长约【多久】，剪法参考【例如讲到例子时开小窗、关键词变色，平时保留人脸】。先检查素材并转写，按意思去掉重说，保留自然停顿，校对人名和术语。让画面跟上我讲到的内容，不要把 B-roll 没展示主题的开头直接塞进去。如果要小窗、三例同屏或素材音效，就在任务工程里实现并检查声音是否盖住人声。先交带声短预览和剪辑单，我反馈后再完成整片与可编辑工程。

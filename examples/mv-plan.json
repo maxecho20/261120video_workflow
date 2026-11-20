@@ -1,0 +1,38 @@
+{
+  "fps": 30,
+  "clip_start_s": 10,
+  "clip_end_s": 16,
+  "events": [
+    {
+      "id": "section-a",
+      "type": "scene",
+      "start_s": 10,
+      "end_s": 13
+    },
+    {
+      "id": "section-b",
+      "type": "scene",
+      "start_s": 13,
+      "end_s": 16
+    },
+    {
+      "id": "L01",
+      "type": "lyric",
+      "start_s": 10.6,
+      "end_s": 12.8,
+      "text": "测试字幕一"
+    },
+    {
+      "id": "B01",
+      "type": "cue",
+      "start_s": 13
+    },
+    {
+      "id": "L02",
+      "type": "lyric",
+      "start_s": 13.4,
+      "end_s": 15.7,
+      "text": "测试字幕二"
+    }
+  ]
+}

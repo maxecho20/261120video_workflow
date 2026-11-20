@@ -1,0 +1,21 @@
+{
+  "name": "ai-video-pipeline",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts MainVideo out/final_video.mp4",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "mediabunny": "1.66.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.544"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.544",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "5.9.3"
+  }
+}
