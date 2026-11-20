@@ -71,7 +71,7 @@ def render(args, runtime, run):
 
     if not (run / "src").exists():
         shutil.copytree(runtime / "src", run / "src")
-    for filename in ("package.json", "tsconfig.json"):
+    for filename in ("package.json", "package-lock.json", "tsconfig.json"):
         if not (run / filename).exists():
             shutil.copyfile(runtime / filename, run / filename)
     if not (run / "node_modules").is_symlink():
