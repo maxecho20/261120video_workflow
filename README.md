@@ -45,6 +45,8 @@ python3 scripts/repro_demo.py mv
 
 三个 demo 的画面和测试声音在本机由程序生成，仅验证渲染、合成、字幕和时间表；不含真人口播，也不证明正式创作效果。产品片和 MV 的正式场景由 Agent 根据你的要求编写或调用你已有的生成工具。本包不附图像/视频生成 API，也不会自动获得联网或多模态能力。动画质量仍需看短样、反馈调整。
 
+如果在 macOS 遇到 Remotion 的 “Waiting for root component to load” 超时，可尝试本机已安装的完整版 Chrome。执行 `export VIDEO_WORKFLOW_CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"` 后重跑 demo 或口播渲染。自己编写的产品片和 MV 可在 Remotion 的 render 命令末尾加 `--chrome-mode=chrome-for-testing --browser-executable="$VIDEO_WORKFLOW_CHROME"`。默认仍用 Remotion 配套浏览器。
+
 口播完整操作和字段见 docs/data-contracts.md。脚本涉及软链接；本次验证环境为 macOS，Windows 使用前需自行解决软链接权限和字体差异，不声称已做跨平台完整验证。Remotion 及各依赖遵循各自许可证。
 
 ## 公开打包

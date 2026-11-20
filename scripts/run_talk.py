@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Run the existing speech-editing pipeline in a separate case directory."""
 import argparse
+import os
 import json
 from pathlib import Path
 import shutil
@@ -14,8 +15,13 @@ def execute(argv, cwd):
 
 def prepare(args, runtime, run):
     source = Path(args.source).resolve(strict=True)
-    run.mkdir(parents=True)
-    for name in ("input", "public", "workspace_data", "out"):
+    owned_dirs = ("input", "public", "workspace_data", "out")
+    occupied = [name for name in owned_dirs if (run / name).exists() or (run / name).is_symlink()]
+    if occupied:
+        raise FileExistsError(f"剪辑目录已有运行数据（{', '.join(occupied)}），请另选新的 --run 子目录：{run}")
+    # A brief and media inventory may already exist; preserve them, but never reuse pipeline data.
+    run.mkdir(parents=True, exist_ok=True)
+    for name in owned_dirs:
         (run / name).mkdir()
 
     clip = run / "input/raw_video.mp4"
@@ -77,9 +83,11 @@ def render(args, runtime, run):
         (run / "public/assets").symlink_to(assets, target_is_directory=True)
 
     execute([sys.executable, str(runtime / "scripts/stage3_video_use.py")], run)
+    chrome = os.environ.get("VIDEO_WORKFLOW_CHROME")
+    browser = ["--chrome-mode=chrome-for-testing", f"--browser-executable={chrome}"] if chrome else []
     execute([
         str(remotion), "render", "src/index.ts", "MainVideo", str(output),
-        "--concurrency=2", "--log=error",
+        "--concurrency=2", "--log=error", *browser,
     ], run)
     execute(["ffmpeg", "-nostdin", "-v", "error", "-i", str(output), "-f", "null", "-"], run)
     print(f"成片已完整解码：{output}")

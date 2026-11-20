@@ -16,7 +16,6 @@ def transcribe_video(
         str(video_path),
         beam_size=5,
         word_timestamps=True,
-        initial_prompt="以下是普通话口播视频的逐字稿，请准确识别标点符号与专业术语。",
     )
     transcript = {
         "language": info.language,

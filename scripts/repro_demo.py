@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import math
 from pathlib import Path
@@ -54,9 +55,11 @@ def main():
         timeline = prepare_timeline(plan)
         (ASSETS / "mv-timeline.json").write_text(json.dumps(timeline, ensure_ascii=False), encoding="utf-8")
     make_score(ASSETS / "score.wav")
+    chrome = os.environ.get("VIDEO_WORKFLOW_CHROME")
+    browser = ["--chrome-mode=chrome-for-testing", f"--browser-executable={chrome}"] if chrome else []
     subprocess.run([
         str(remotion), "render", "examples/index.tsx", CHOICES[selection], str(output),
-        "--concurrency=2", "--log=error",
+        "--concurrency=2", "--log=error", *browser,
     ], cwd=ROOT, check=True)
     subprocess.run([ffmpeg, "-nostdin", "-v", "error", "-i", str(output), "-f", "null", "-"], check=True)
     print(output)
